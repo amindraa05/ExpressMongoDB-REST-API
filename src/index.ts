@@ -5,6 +5,10 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 import mongoose, { mongo } from 'mongoose';
+import dotenv from 'dotenv';
+
+
+
 import router from './router'
 
 const app = express();
@@ -24,7 +28,8 @@ server.listen(8080, () => {
     console.log('Server is running on port 8080');
 })
 
-const MONGO_URL = 'mongodb+srv://amindraa05:fzI19j9y38IoRDL9@cluster0.ajq3him.mongodb.net/'
+dotenv.config();
+const MONGO_URL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.ajq3him.mongodb.net/`
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
